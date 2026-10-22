@@ -32,20 +32,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   void _onSavePassword() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Пароль успішно оновлено')),
-    );
+    ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text('Пароль успішно оновлено')));
     _currentController.clear();
     _newController.clear();
     _confirmController.clear();
   }
 
   void _onChangePhoto() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Заміна фото зʼявиться в наступній лабораторній роботі'),
-      ),
-    );
+    ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text('Coming soon')));
   }
 
   void _onLogout() {
@@ -157,7 +153,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(user.fullName, style: theme.textTheme.titleMedium),
+                          Text(
+                            user.fullName,
+                            style: theme.textTheme.titleMedium,
+                          ),
                           const SizedBox(height: AppSpacing.xxs),
                           Text(user.email, style: theme.textTheme.bodySmall),
                         ],
