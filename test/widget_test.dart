@@ -38,4 +38,31 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Видалити запис?'), findsOneWidget);
   });
+
+  testWidgets('з форми можна відкрити екран фотофіксації і повернутися', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(1440, 900);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.reset);
+
+    await tester.pumpWidget(const BorrowedItemsApp());
+    await tester.tap(find.text('Увійти'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Редагувати').first);
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Фотофіксація стану речі'));
+    await tester.pumpAndSettle();
+    expect(find.text('Додав: Taras Kabachok'), findsOneWidget);
+    expect(find.text('Розмір: 2.4 МБ'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Видалити фото'));
+    await tester.pump();
+    expect(find.text('Розмір: 2.4 МБ'), findsNothing);
+
+    await tester.tap(find.text('Повернутися до редагування'));
+    await tester.pumpAndSettle();
+    expect(find.text('Редагування запису про річ'), findsOneWidget);
+  });
 }

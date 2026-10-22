@@ -8,6 +8,7 @@ import '../../core/widgets/app_text_field.dart';
 import '../../core/widgets/segmented_tabs.dart';
 import '../../data/models/borrowed_item.dart';
 import 'delete_item_dialog.dart';
+import 'photo_capture_screen.dart';
 
 /// Модальне вікно додавання / редагування запису про річ (Рис. 4, ФВ 4).
 /// Лише інтерфейс: дані нікуди не зберігаються.
@@ -79,10 +80,8 @@ class _ItemFormDialogState extends State<ItemFormDialog> {
   }
 
   void _onPhotoPressed() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Фотофіксація зʼявиться в наступній лабораторній роботі'),
-      ),
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (_) => const PhotoCaptureScreen()),
     );
   }
 
